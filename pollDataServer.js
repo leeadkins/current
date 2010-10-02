@@ -31,7 +31,7 @@ tcpdump.stdout.on('data', function (data) {
 
 //Setup the updater page for long polling  
 fu.get("/update", function (req, res) {
-  res.sendHeader(200,{"Content-Type": "text/html"});
+  res.writeHead(200,{"Content-Type": "text/html"});
   var thesince;
   if(url.parse(req.url,true).hasOwnProperty('query') && url.parse(req.url,true).query.hasOwnProperty('since')){
     thesince = parseInt(url.parse(req.url,true)['query']['since']);
@@ -41,8 +41,7 @@ fu.get("/update", function (req, res) {
   }
   rb.addListenerForUpdateSince(thesince, function(data){
     var body = '['+_.map(data,JSON.stringify).join(',\n')+']';
-    res.write( body );
-    res.close();
+    res.end( body );
   });
 });
 
