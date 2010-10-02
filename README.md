@@ -1,6 +1,6 @@
 ## Current
 
-Runs with **Node v0.1.102**
+Runs with **Node v0.3.0-pre**
 
 To run current you need to remember 2 things:
 
